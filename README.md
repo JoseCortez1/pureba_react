@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# React test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt](https://i.imgur.com/i2pmojo.gif)
 
-## Available Scripts
+You have been given the task of making a TODO list page. A table should show which items belong to which person and whether or not they have been completed. To avoid having a huge table, it must be accompanied by a paging system. Last but not least, we want to add items to the list. Adding items to the list is a local operation, which means that no POST request is made to add the item, it just needs to be added to the table.
+You have one hour to complete as many of the following requirments as possible. But first, don't forget to read the rules bellow. Use this codesandbox as a starting point: `https://codesandbox.io/s/new`
 
-In the project directory, you can run:
+## Rules
 
-### `npm start`
+- Surfing the web is allowed!
+- You can use any layout system if you want. (Ant Design, Material UI, Bootstrap, etc...)
+- You can use both functional and class components.
+- No code optimization required.
+- There is no mandatory code style, feel free to use any style you want as long as it is easy to read.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Requirements
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Data
 
-### `npm test`
+Data should be fetched from this dummy endpoint `https://jsonplaceholder.typicode.com/todos`. You can use fetch, axios or any other method for fetching the information. This endpoint contains dummy data about a TODO list with this format:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```json
+{
+	userId: 1, //User id
+	id: 1, // TODO id
+	title: "delectus aut autem", // TODO description
+	completed: false // Wether the TODO has been completed or not
+},
+```
 
-### `npm run build`
+### Table
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The table must contain four columns in this particular order:
+![alt](https://i.imgur.com/mctJwEg.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- #: `id` field from schema above. Centered.
+- User: `userId` field from schema above. Centered.
+- Description: `title` field from schema above.
+- Completed: `completed` field from schema above. Centered. If true, a check icon should be put in place, otherwise, a cross icon.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make sure to add borders to the cells to add clarity to your table.
+Table rows of uncompleted elements should have another background color.
 
-### `npm run eject`
+### Pagination:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![alt](https://i.imgur.com/HeEA49v.png)
+<br>
+Must be dinamic according to the size of the table with 10 elements per page. The selected page must be shown in bold text as shown above. When clickin on each number the page, and so, the content of the table should change.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### New todo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+An input will help the user add elements to the table as such:
+![alt](https://i.imgur.com/ntWfNrg.gif)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+As you can see bellow, when an item is added to the list it must appear at the top of the table. Add a random `userId` and `id`. By default the element will be uncompleted. Once the form has been submitted the cursor should automatically focus the input again. You can trigger the form submission by clickin on the Button at the right or by pressing the `Enter` key in your keyboard.
 
-## Learn More
+### Loading
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![alt](https://i.imgur.com/jTl8EkD.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+A loading screen should appear while the data is being fetched.
+Don't forget to add a `Reload` button.
 
-### Code Splitting
+### Error
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![alt](https://i.imgur.com/dSB9yLE.gif)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A error screen should appear if there was an issue loading the data. (You can use Offline mode in Chrome developper console to try this one out)
